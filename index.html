@@ -4,31 +4,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <title>Lesson_2</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>notes</title>
 </head>
 
 <body>
-
-    <header>
-
-        <div class="container">
-            <div class="navbar">
-                <img src="./assets/logo.png" alt="logo" class="logo">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">contacts</a></li>
-                </ul>
+    <div id="app">
+        <header class="header">
+            <div class="container">
+                <div class="header-wrapper">
+                    <img src="./images/📝Notes.svg" alt="logo-notes">
+                    <div class="notes-counter">
+                        <img src="./images/icons/notes.svg" alt="icon-notes">
+                        <span class="notes-count">Всего заметок: 0</span>
+                    </div>
+                </div>
             </div>
-            <h1 content="Web Developer">Web Developer</h1>
-            <button id="reloadBtn" class="btn" type="button">Discover More</button>
-        </div>
+        </header>
+        <main>
+            <div class="container">
+                <div class="main-wrapper">
 
-    </header>
+                    <form type='submit' class="note-form" name="notes">
 
-    <script src="./lesson-2.js"></script>
+                        <div class="name-not-wrapper">
+                            <span>Название заметки</span>
+                            <input type="text" class="name-noties" name="noteTitle"
+                                placeholder="Напишите название новой заметки..." maxLength="50">
+                        </div>
+
+                        <div class="note-form-wrapper">
+
+                            <div class="text-not">
+
+                                <span>Описание новой заметки</span>
+                                <textarea class="note-description" name="noteDescription"
+                                    placeholder="Напишите описание новой заметки..." maxLength="500"></textarea>
+
+                            </div>
+
+                            <div class="color-controls">
+                                <div class="color-controls-wrapper">
+                                    <span>Выберите цвет заметки</span>
+                                    <div class="color-options">
+                                        <input type="radio" id="color-yellow" name="color" value="yellow" checked>
+                                        <label for="color-yellow" class="radio-color yellow"
+                                            aria-label="yellow"></label>
+
+                                        <input type="radio" id="color-green" name="color" value="green">
+                                        <label for="color-green" class="radio-color green" aria-label="green"></label>
+
+                                        <input type="radio" id="color-blue" name="color" value="blue">
+                                        <label for="color-blue" class="radio-color blue" aria-label="blue"></label>
+
+                                        <input type="radio" id="color-red" name="color" value="red">
+                                        <label for="color-red" class="radio-color red" aria-label="red"></label>
+
+                                        <input type="radio" id="color-purple" name="color" value="purple">
+                                        <label for="color-purple" class="radio-color purple"
+                                            aria-label="purple"></label>
+                                    </div>
+                                </div>
+                                <button class="main-button" type="submit">
+                                    <img src="./images/icons/plus-svgrepo-com 1.svg" alt="icon-plus">
+                                    Добавить заметку
+                                </button>
+                            </div>
+
+                        </div>
+                    </form>
+
+                    <div class="filter-box">
+                        <p>У вас нет еще ни одной заметки</p>
+                        <p>Заполните поля выше и создайте свою первую заметку!</p>
+                    </div>
+                    <ul class="notes-list">
+                        <!-- Сюда будут рендерится заметки из JavaScript -->
+                    </ul>
+
+                    <div class="messages-box">
+                        <!-- Сюда будут рендерится информационные сообщения из JavaScript -->
+                    </div>
+                </div>
+        </main>
+    </div>
+    <script src="js/index.js"></script>
 </body>
 
 </html>

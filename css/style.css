@@ -1,0 +1,421 @@
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/static/Montserrat-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/static/Montserrat-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('../fonts/static/Montserrat-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: "Montserrat", sans-serif;
+    background: #fafafc;
+}
+
+.container {
+    max-width: 1152px;
+    width: 100%;
+    /* border: solid 1px rgb(203, 136, 136); */
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    padding: 0px 65px;
+    margin-bottom: 25px;
+    box-shadow: 0 1px 3px 0 rgba(11, 12, 13, 0.16), 0 0 1px 0 rgba(11, 12, 13, 0.24);
+    background: #fff;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0px;
+}
+
+.header-wrapper span {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000;
+}
+
+.notes-counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    padding: 0px 65px;
+}
+
+.note-form {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 8px 12px 0 rgba(11, 12, 13, 0.08), 0 16px 24px 0 rgba(11, 12, 13, 0.04), 0 1px 2px 0 rgba(11, 12, 13, 0.08);
+    background: #fff;
+    border-radius: 4px;
+}
+
+.name-not-wrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 345px;
+}
+
+span {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 24px;
+    color: #919191;
+}
+
+input::placeholder,
+textarea::placeholder {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #919191;
+}
+
+input[type='text'],
+textarea {
+    outline: none;
+    border: 1px solid #e8e8e8;
+    border-radius: 10px;
+    padding: 6px 12px;
+    width: 100%;
+    height: 36px;
+    color: #333333;
+}
+
+input[type='text']:focus,
+textarea:focus {
+    border-color: #a0a0a0;
+    box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.05);
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px #fff inset !important;
+    /* фон формы */
+    transition: background-color 5000s ease-in-out 0s;
+    /* убирает мерцание подсветки */
+}
+
+input {
+    font-size: 16px;
+}
+
+textarea {
+    resize: none;
+    height: 84px;
+    font-size: 18px;
+}
+
+.note-form-wrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.text-not {
+    display: flex;
+    flex-direction: column;
+    max-width: 850px;
+    width: 100%;
+}
+
+.color-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 230px;
+    width: 100%;
+}
+
+.color-controls button {
+    cursor: pointer;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 6px 32px;
+    width: 100%;
+    height: 36px;
+    background-color: #457cdc;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #fff;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #3560b5;
+}
+
+button:active {
+    transform: translateY(3px);
+}
+
+.color-options {
+    display: flex;
+    gap: 20px;
+}
+
+input[type='radio'] {
+    display: none
+}
+
+.radio-color::before {
+    cursor: pointer;
+    content: '';
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 4px solid white;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: box-shadow 0.2s ease;
+}
+
+.radio-color.yellow::before {
+    background-image: url(../images/radio/Ellipse\ yellow.svg);
+}
+
+.radio-color.green::before {
+    background-image: url(../images/radio/Ellipse\ green.svg);
+}
+
+.radio-color.blue::before {
+    background-image: url(../images/radio/Ellipse\ blue.svg);
+}
+
+.radio-color.red::before {
+    background-image: url(../images/radio/Ellipse\ red.svg);
+}
+
+.radio-color.purple::before {
+    background-image: url(../images/radio/Ellipse\ purple.svg);
+}
+
+input[type="radio"]:checked+.radio-color::before {
+    box-shadow: 0 0 0 1.5px currentColor;
+}
+
+.radio-color.yellow {
+    color: #F3DB7D;
+}
+
+.radio-color.green {
+    color: #C2F37D;
+}
+
+.radio-color.blue {
+    color: #7DE1F3;
+}
+
+.radio-color.red {
+    color: #F37D7D;
+}
+
+.radio-color.purple {
+    color: #E77DF3;
+}
+
+.filter-box {
+    margin-top: 140px;
+}
+
+.filter-box p {
+    text-align: center;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000;
+}
+
+.filterCheckbox input {
+    display: none;
+}
+
+.filterCheckbox {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row;
+    gap: 8px;
+    margin-top: 24px;
+
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    color: #000;
+}
+
+.filterCheckbox::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
+    background-image: url(../images/icons/checkbox\ inactive.svg);
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+}
+
+.filterCheckbox input:checked+::before {
+    background-image: url(../images/icons/checkbox-active.svg);
+}
+
+.notes-list {
+    margin-top: 12px;
+    display: flex;
+    align-items: flex-start;
+    gap: 22px;
+    flex-wrap: wrap;
+}
+
+.addList {
+    display: flex;
+    align-self: flex-start;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    max-width: 368px;
+    box-shadow: 0 4px 8px 0 rgba(11, 12, 13, 0.08), 0 8px 16px 0 rgba(11, 12, 13, 0.04), 0 1px 2px 0 rgba(11, 12, 13, 0.08);
+}
+
+.headerNot h1 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 344px;
+    margin-left: 12px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #292515;
+}
+
+.addList p {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000;
+    padding: 12px;
+}
+
+
+.headerNot.yellow {
+    background-color: #F3DB7D;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.headerNot.green {
+    background-color: #C2F37D;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.headerNot.blue {
+    background-color: #7DE1F3;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.headerNot.red {
+    background-color: #F37D7D;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.headerNot.purple {
+    background-color: #E77DF3;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.favorite-false::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background-image: url(../images/icons/heart\ inactive.svg);
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+}
+
+.delete-false::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background-image: url(../images/icons/trash.svg);
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
+}
+
+.group {
+    display: flex;
+    gap: 12px;
+}
+
+.favorite-false,
+.delete-false {
+    display: flex;
+    align-items: center;
+}
