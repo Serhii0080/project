@@ -34,7 +34,6 @@ body {
 .container {
     max-width: 1152px;
     width: 100%;
-    /* border: solid 1px rgb(203, 136, 136); */
 }
 
 .header {
@@ -52,8 +51,15 @@ body {
     padding: 20px 0px;
 }
 
-.header-wrapper span {
+.header-wrapper .notes-count {
     font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    color: #000;
+}
+
+.count {
+    font-weight: 900;
     font-size: 16px;
     line-height: 24px;
     color: #000;
@@ -178,11 +184,11 @@ textarea {
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-button:hover {
+.main-button:hover {
     background-color: #3560b5;
 }
 
-button:active {
+.main-button:active {
     transform: translateY(3px);
 }
 
@@ -254,7 +260,14 @@ input[type="radio"]:checked+.radio-color::before {
 }
 
 .filter-box {
-    margin-top: 140px;
+    padding-top: 140px;
+    width: 100%;
+}
+
+.filter-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
 }
 
 .filter-box p {
@@ -265,18 +278,16 @@ input[type="radio"]:checked+.radio-color::before {
     color: #000;
 }
 
-.filterCheckbox input {
-    display: none;
-}
-
 .filterCheckbox {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
-    flex-direction: row;
-    gap: 8px;
-    margin-top: 24px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
 
+.filterText {
     font-weight: 400;
     font-size: 14px;
     line-height: 24px;
@@ -294,9 +305,17 @@ input[type="radio"]:checked+.radio-color::before {
     display: inline-block;
 }
 
-.filterCheckbox input:checked+::before {
-    background-image: url(../images/icons/checkbox-active.svg);
+.filterCheckbox.active::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background-image: url(../images/icons/checkbox\ active.svg);
+    background-size: cover;
+    background-position: center;
+    display: inline-block;
 }
+
 
 .notes-list {
     margin-top: 12px;
@@ -312,14 +331,13 @@ input[type="radio"]:checked+.radio-color::before {
     align-items: center;
     flex-direction: column;
     border-radius: 10px;
-    max-width: 368px;
+    width: 368px;
     box-shadow: 0 4px 8px 0 rgba(11, 12, 13, 0.08), 0 8px 16px 0 rgba(11, 12, 13, 0.04), 0 1px 2px 0 rgba(11, 12, 13, 0.08);
 }
 
-.headerNot h1 {
+.headerNot h2 {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     width: 344px;
     margin-left: 12px;
     font-weight: 500;
@@ -329,6 +347,12 @@ input[type="radio"]:checked+.radio-color::before {
 }
 
 .addList p {
+    display: block;
+    width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    /* поддержка для разных браузеров */
+    white-space: normal;
     font-weight: 400;
     font-size: 16px;
     line-height: 24px;
@@ -387,24 +411,38 @@ input[type="radio"]:checked+.radio-color::before {
     border-top-left-radius: 10px;
 }
 
-.favorite-false::before {
+.noteFavorite::before {
     content: '';
     width: 16px;
     height: 16px;
     cursor: pointer;
     background-image: url(../images/icons/heart\ inactive.svg);
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
     display: inline-block;
 }
 
-.delete-false::before {
+.noteFavorite.selected::before {
+    content: '';
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    background-image: url(../images/icons/heart\ active.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+}
+
+.isDeleted::before {
     content: '';
     width: 16px;
     height: 16px;
     cursor: pointer;
     background-image: url(../images/icons/trash.svg);
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
     display: inline-block;
 }
@@ -412,10 +450,11 @@ input[type="radio"]:checked+.radio-color::before {
 .group {
     display: flex;
     gap: 12px;
+    margin-left: auto;
 }
 
-.favorite-false,
-.delete-false {
+.noteFavorite,
+.isDeleted {
     display: flex;
     align-items: center;
 }
