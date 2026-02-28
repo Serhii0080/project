@@ -184,6 +184,13 @@ textarea {
     transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
+button:focus-visible {
+    outline: 1px solid #4c9ffe;
+    outline-offset: 2px;
+    border-radius: 4px;
+    box-shadow: 0 0 0 3px rgba(76, 159, 254, 0.25);
+}
+
 .main-button:hover {
     background-color: #3560b5;
 }
@@ -337,13 +344,18 @@ input[type="radio"]:checked+.radio-color::before {
 
 .headerNot h2 {
     display: flex;
+    gap: 10px;
     align-items: center;
-    width: 344px;
-    margin-left: 12px;
+    max-width: 346px;
+    margin-left: 10px;
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
     color: #292515;
+    width: 100%;
+    overflow-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
 }
 
 .addList p {
@@ -366,7 +378,8 @@ input[type="radio"]:checked+.radio-color::before {
     display: flex;
     align-items: center;
     width: 100%;
-    height: 48px;
+    min-height: 50px;
+    padding: 10px 0;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
 }
@@ -376,7 +389,8 @@ input[type="radio"]:checked+.radio-color::before {
     display: flex;
     align-items: center;
     width: 100%;
-    height: 48px;
+    min-height: 50px;
+    padding: 10px 0;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
 }
@@ -386,7 +400,8 @@ input[type="radio"]:checked+.radio-color::before {
     display: flex;
     align-items: center;
     width: 100%;
-    height: 48px;
+    min-height: 50px;
+    padding: 10px 0;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
 }
@@ -396,7 +411,8 @@ input[type="radio"]:checked+.radio-color::before {
     display: flex;
     align-items: center;
     width: 100%;
-    height: 48px;
+    min-height: 50px;
+    padding: 10px 0;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
 }
@@ -406,7 +422,8 @@ input[type="radio"]:checked+.radio-color::before {
     display: flex;
     align-items: center;
     width: 100%;
-    height: 48px;
+    min-height: 50px;
+    padding: 10px 0;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
 }
@@ -457,4 +474,52 @@ input[type="radio"]:checked+.radio-color::before {
 .isDeleted {
     display: flex;
     align-items: center;
+}
+
+.message-warning {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+
+    border-radius: 10px;
+    padding: 12px 24px;
+    max-width: 627px;
+    height: 48px;
+    box-shadow: 0 8px 12px 0 rgba(11, 12, 13, 0.08), 0 16px 24px 0 rgba(11, 12, 13, 0.04), 0 1px 2px 0 rgba(11, 12, 13, 0.08);
+    background-color: #f23d5b;
+}
+
+.message-success {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+
+    border-radius: 10px;
+    padding: 12px 24px;
+    max-width: 230px;
+    height: 48px;
+    box-shadow: 0 8px 12px 0 rgba(11, 12, 13, 0.08), 0 16px 24px 0 rgba(11, 12, 13, 0.04), 0 1px 2px 0 rgba(11, 12, 13, 0.08);
+    background-color: #47b27d;
+}
+
+.message-warning span,
+.message-success span {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 24px;
+    color: #fff;
+}
+
+.messages-wrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.messages-box {
+    position: fixed;
+    bottom: 72px;
 }

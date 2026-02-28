@@ -82,10 +82,19 @@ const view = {
                         // Здесь можно задать цвет по умолчанию, если понадобится!
                         break;
                 }
-                input.value = "";
-                textarea.value = "";
 
-                controller.addNote(inputValue, textareaValue, colorInput);
+                const added = controller.addNote(
+                    inputValue,
+                    textareaValue,
+                    colorInput,
+                );
+
+                this.showMessage();
+
+                if (added) {
+                    input.value = "";
+                    textarea.value = "";
+                }
             }
         });
     },
@@ -165,6 +174,7 @@ const view = {
             const li = event.target.closest("li");
             if (!li) return;
             controller.removeNote(li.id);
+            this.showMessage("success", "Заметка удалена!");
         });
     },
 
@@ -202,15 +212,78 @@ const view = {
                 noteFavorite.getAttribute("aria-pressed") === "true";
             noteFavorite.setAttribute("aria-pressed", !pressed);
             noteFavorite.classList.toggle("selected");
+
             const newFavoriteState = !pressed;
             controller.updateNoteFavorite(li.id, newFavoriteState);
+
+            this.renderNotes(
+                document.querySelector(".active")
+                    ? model.getFavoriteNotes()
+                    : model.notes,
+            );
         });
+    },
+
+    showMessage(messageType, messageText) {
+        const input = document.querySelector(".name-noties").value;
+        const textarea = document.querySelector(".note-description").value;
+        const messagesBox = document.querySelector(".messages-box");
+
+        let messageClass = "message-warning";
+        let img = '<img src="./images/messages/warning.svg" alt="warning">';
+
+        let text = "Заметка добавлена!";
+
+        if (messageType === "success") {
+            text = messageText;
+            messageClass = "message-success";
+            img = '<img src="./images/messages/success.svg" alt="success">';
+        } else if (input.length < 1 || textarea.length < 1) {
+            text = "Заполните поля выше";
+        } else if (input.length > 50) {
+            text = "Максимальная длина заголовка - 50 символов";
+        } else if (textarea.length > 500) {
+            text = "Максимальная длина описания - 500 символов";
+        } else {
+            messageClass = "message-success";
+            img = '<img src="./images/messages/success.svg" alt="success">';
+        }
+
+        if (this.messageTimeout) {
+            clearTimeout(this.messageTimeout);
+        }
+
+        this.messageTimeout = setTimeout(() => {
+            messagesBox.innerHTML = `
+    <div class="${messageClass}">
+        ${img}
+        <span>${text}</span>
+    </div>`;
+        }, 300);
+
+        if (this.hideTimeout) {
+            clearTimeout(this.hideTimeout);
+        }
+
+        this.hideTimeout = setTimeout(() => {
+            messagesBox.innerHTML = "";
+        }, 5000);
     },
 };
 
 const controller = {
     addNote(inputValue, textareaValue, colorInput) {
+        if (
+            inputValue.length > 50 ||
+            textareaValue.length > 500 ||
+            inputValue.length < 1 ||
+            textareaValue.length < 1
+        ) {
+            return false;
+        }
+
         model.createNotes(inputValue, textareaValue, colorInput);
+        return true;
     },
     removeNote(id) {
         model.removeNote(id);
