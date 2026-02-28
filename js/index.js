@@ -1,5 +1,19 @@
+// Модель — хранение данных (notes) и работа с localStorage
 const model = {
     notes: [],
+
+    // Загрузка заметок из localStorage при старте
+    // localStorage хранит данные как строки, поэтому парсим JSON
+    loadNotes() {
+        const saved = localStorage.getItem("notes");
+        this.notes = saved ? JSON.parse(saved) : [];
+    },
+
+    // Сохранение заметок в localStorage
+    // JSON.stringify превращает объект/массив в строку
+    saveNotes() {
+        localStorage.setItem("notes", JSON.stringify(this.notes));
+    },
 
     createNotes(inputValue, textareaValue, colorInput) {
         const note = {};
@@ -8,7 +22,12 @@ const model = {
         note.id = crypto.randomUUID();
         note.color = colorInput;
         note.isFavorite = false;
+
         this.notes.unshift(note);
+
+        // Сохраняем после изменения данных
+        this.saveNotes();
+
         view.renderNotes(this.notes);
         this.updateNotesLength();
     },
@@ -23,7 +42,11 @@ const model = {
         const index = this.notes.findIndex((element) => element.id === id);
         if (index !== -1) {
             this.notes.splice(index, 1);
+
+            // Сохраняем после удаления
+            this.saveNotes();
         }
+
         view.renderNotes(this.notes);
         this.updateNotesLength();
     },
@@ -34,6 +57,9 @@ const model = {
                 element.isFavorite = newFavoriteState;
             }
         });
+
+        // Сохраняем после изменения флага избранного
+        this.saveNotes();
     },
 
     getFavoriteNotes() {
@@ -293,4 +319,14 @@ const controller = {
     },
 };
 
+// Загружаем данные
+model.loadNotes();
+
+// Рендерим заметки сразу после загрузки
+view.renderNotes(model.notes);
+
+// Обновляем счётчик заметок
+model.updateNotesLength();
+
+// Запускаем UI (обработчики)
 view.init();
